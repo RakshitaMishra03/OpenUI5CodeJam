@@ -1,0 +1,42 @@
+_schema-version: "3.2"
+ID: codejam.supermarket
+version: 0.0.1
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npm install
+        - npm run build:workspaces
+modules:
+  - name: codejam.supermarket-ui-deployer
+    type: com.sap.application.content
+    path: .
+    requires:
+      - name: codejam.supermarket-auth
+      - name: codejam.supermarket-app-front
+        parameters:
+          content-target: true
+    build-parameters:
+      build-result: resources
+      requires:
+        - artifacts:
+            - dist/uimodule-content.zip
+          name: uimodule
+          target-path: resources/
+  - name: uimodule
+    type: html5
+    path: uimodule
+    build-parameters:
+      supported-platforms: []
+resources:
+  - name: codejam.supermarket-app-front
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: app-front
+      service-plan: developer
+  - name: codejam.supermarket-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      path: ./xs-security.json
+      service: xsuaa
+      service-plan: application
