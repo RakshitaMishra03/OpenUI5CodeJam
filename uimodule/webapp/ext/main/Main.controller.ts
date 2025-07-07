@@ -9,6 +9,8 @@ import MessageToast from "sap/m/MessageToast";
 import ODataContextBinding from "sap/ui/model/odata/v4/ODataContextBinding";
 import Label from "sap/m/Label";
 import CompositeBinding from "sap/ui/model/CompositeBinding";
+import { Button$PressEvent } from "sap/m/Button";
+import Supermarket from "../control/Supermarket";
 
 /**
  * @namespace uimodule.ext.main
@@ -79,5 +81,14 @@ export default class Main extends Controller {
 		}).catch(function(error: Error) {
 			MessageToast.show(error.message);
 		});
+	}
+
+  public onFlyToProduct(event: Button$PressEvent): void {
+		const source = event.getSource()
+		const context = source.getBindingContext()
+		const position = context?.getProperty("position")
+		const supermarket = this.getView()?.byId("supermarket") as Supermarket
+		supermarket.expand({ stayExpanded: true })
+		supermarket.setCameraPosition(JSON.parse(position), { backToStart: true })
 	}
 }

@@ -5,7 +5,8 @@
 	xmlns:f="sap.f"
 	xmlns:macros="sap.fe.macros"
 	xmlns:html="http://www.w3.org/1999/xhtml"
-	controllerName="uimodule.ext.main.Main">
+	controllerName="uimodule.ext.main.Main"
+	xmlns:cc="uimodule.ext.control">
 	<Page id="Main" showHeader="false" class="sapUiContentPadding">
 		<VBox justifyContent="SpaceBetween" width="100%" height="100%">
 			<VBox alignItems="Center">
@@ -49,5 +50,8 @@
 					class="sapUiSmallMarginBottom" />
 				<Label id="avgRating" text="({ path: '/getAvgRating()', type: 'sap.ui.model.odata.type.Decimal' } average rating)" />
 			</VBox>
+		<FlexBox class="fixed">
+				<cc:Supermarket id="supermarket" />
+			</FlexBox>
 	</Page>
 </mvc:View>
