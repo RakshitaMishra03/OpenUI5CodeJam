@@ -27,6 +27,7 @@
         "ts-node": "^10.9.2",
         "typescript": "^5.8.3",
         "ui5-task-zipper": "^3.2.1",
+        "ui5-test-runner": "^5.8.1",
         "ui5-tooling-modules": "^3.28.0",
         "ui5-tooling-transpile": "^3.3.7",
         "wdio-ui5-service": "^2.2.0"
@@ -40,7 +41,9 @@
         "prebuild": "npm run ts-typecheck",
         "ui5lint": "ui5lint",
         "qunit": "fiori run --open test/unitTests.qunit.html",
-        "wdi5": "wdio run ./webapp/test/e2e/wdio.conf.ts"
+        "wdi5": "wdio run ./webapp/test/e2e/wdio.conf.ts",
+        "test-runner": "ui5-test-runner --url http://localhost:4004/uimodule/test/testsuite.qunit.html --report-dir webapp/report"
+    
     },
     "sapux": true,
     "dependencies": {

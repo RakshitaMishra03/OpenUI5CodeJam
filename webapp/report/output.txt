@@ -1,0 +1,80 @@
+ui5-test-runner@5.8.1
+Server running at http://172.16.13.3:53089/                                                                      
+
+00:01 │ Probing browser instantiation command
+──────┴──────────────────────────────────────
+
+00:01 │ Installing puppeteer...
+──────┴────────────────────────
+
+added 97 packages in 12s
+
+7 packages are looking for funding
+  run `npm fund` for details
+
+
+00:13 │ Probing browser instantiation command
+──────┴──────────────────────────────────────
+puppeteer@24.12.0 in /opt/homebrew/lib/node_modules/puppeteer                                                    
+Browser capabilities :
+ ├─ modules
+ │  └─  puppeteer                                                                                                
+ ├─ screenshot: ".png"
+ ├─ scripts: true
+ ├─ parallel: true
+ └─ traces: ["console","network"]
+
+00:13 │ Probing urls
+──────┴─────────────
+00:13 >> http://localhost:4004/uimodule/test/testsuite.qunit.html                                   [vpU3V5YrqGE]
+00:15 << http://localhost:4004/uimodule/test/testsuite.qunit.html                                   [vpU3V5YrqGE]
+
+00:15 │ Executing test pages
+──────┴─────────────────────
+00:15 >> ....qunit.html?testsuite=test-resources/uimodule/testsuite.qunit&test=integration/opaTests [ONsKiu9CuRE]
+00:15 >> ...t/Test.qunit.html?testsuite=test-resources/uimodule/testsuite.qunit&test=unit/unitTests [_8rpQD2yjcE]
+00:21 << ...nit.html?testsuite=test-resources/uimodule/testsuite.qunit&test=unit/unitTests  (00:01) [_8rpQD2yjcE]
+00:26 << ...ml?testsuite=test-resources/uimodule/testsuite.qunit&test=integration/opaTests  (00:09) [ONsKiu9CuRE]
+
+00:26 │ Generating reports
+──────┴───────────────────
+┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│...st/Test.qunit.html?testsuite=test-resources/uimodule/testsuite.qunit&test=integration/opaTests 🥼 🐞   0/1  │
+│...ule/test/Test.qunit.html?testsuite=test-resources/uimodule/testsuite.qunit&test=unit/unitTests 🧪      1/1  │
+└───────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+[...04/uimodule/test/Test.qunit.html?testsuite=test-resources/uimodule/testsuite.qunit&test=integration/opaTests]
+Page execution folder name : ONsKiu9CuRE
+Sample Journey ▶ Should search for Coca-Cola
+Did not find the search field on the Main view and could not enter text
+Failure in Opa success function
+Exception thrown by the testcode:'TypeError: Cannot read properties of undefined (reading '0')
+TypeError: Cannot read properties of undefined (reading '0')
+    at constructor.onkeydown (http://localhost:4004/uimodule/resources/sap/ui/core/delegate/ScrollEnablement.js:371:37)
+    at each (http://localhost:4004/uimodule/resources/sap/ui/core/Element.js:351:31)
+    at Element._handleEvent (http://localhost:4004/uimodule/resources/sap/ui/core/Element.js:371:3)
+    at UIArea._handleEvent (http://localhost:4004/uimodule/resources/sap/ui/core/UIArea.js:1056:15)
+    at HTMLDivElement.dispatch (http://localhost:4004/uimodule/resources/sap/ui/thirdparty/jquery.js:5430:27)
+    at elemData.handle (http://localhost:4004/uimodule/resources/sap/ui/thirdparty/jquery.js:5234:28)
+    at Object.trigger (http://localhost:4004/uimodule/resources/sap/ui/thirdparty/jquery.js:8823:12)
+    at HTMLInputElement.<anonymous> (http://localhost:4004/uimodule/resources/sap/ui/thirdparty/jquery.js:8901:17)
+    at jQuery.each (http://localhost:4004/uimodule/resources/sap/ui/thirdparty/jquery.js:385:19)
+    at jQuery.fn.init.each (http://localhost:4004/uimodule/resources/sap/ui/thirdparty/jquery.js:207:17)'
+This is what Opa logged:
+Found 0 blocking out of 492 tracked timeouts -  sap.ui.test.autowaiter._timeoutWaiter#hasPending
+AutoWaiter syncpoint -  sap.ui.test.autowaiter._autoWaiter
+Found 2 controls of type 'View' in page -  sap.ui.test.Opa5
+Found 1 views with viewName 'uimodule.ext.main.Main' -  sap.ui.test.Opa5
+Found view with ID 'undefined' and viewName 'uimodule.ext.main.Main' -  sap.ui.test.Opa5
+Found control with ID 'searchField' and controlType 'undefined' in view 'uimodule.ext.main.Main' -  sap.ui.test.Opa5
+1 out of 1 controls met the matchers pipeline requirements -  sap.ui.test.pipelines.MatcherPipeline
+Found a DOM reference for the control 'Element sap.m.SearchField#uimodule::ProductsMain--searchField'. Executing 'sap.ui.test.actions.EnterText' on the DOM element with ID 'uimodule::ProductsMain--searchField-I' -  sap.ui.test.actions.EnterText
+Enter text in control Element sap.m.SearchField#uimodule::ProductsMain--searchField -  sap.ui.test.actions.EnterText
+Control Element sap.m.SearchField#uimodule::ProductsMain--searchField could not be focused - maybe you are debugging? -  sap.ui.test.actions.EnterText
+Dispatched focus event: 'focusin' -  sap.ui.test.actions.EnterText
+Dispatched focus event: 'focus' -  sap.ui.test.actions.EnterText
+Dispatched focus event: 'activate' -  sap.ui.test.actions.EnterText
+
+
+00:26 │ Reports generated
+──────┴──────────────────
