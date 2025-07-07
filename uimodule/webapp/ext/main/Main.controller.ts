@@ -1,4 +1,14 @@
 import Controller from "sap/fe/core/PageController";
+import { SearchField$LiveChangeEvent } from "sap/m/SearchField";
+import Filter from "sap/ui/model/Filter";
+import FilterOperator from "sap/ui/model/FilterOperator";
+import ODataListBinding from "sap/ui/model/odata/v4/ODataListBinding";
+import HBox from "sap/m/HBox";
+import { RatingIndicator$ChangeEvent } from "sap/m/RatingIndicator";
+import MessageToast from "sap/m/MessageToast";
+import ODataContextBinding from "sap/ui/model/odata/v4/ODataContextBinding";
+import Label from "sap/m/Label";
+import CompositeBinding from "sap/ui/model/CompositeBinding";
 
 /**
  * @namespace uimodule.ext.main
@@ -39,4 +49,35 @@ export default class Main extends Controller {
     // public onExit(): void {
     //
     //  }
+
+    public onSearchProducts(event: SearchField$LiveChangeEvent): void {
+		const filter = [];
+		const query = event.getParameter("newValue");
+		if (query) {
+			filter.push(new Filter({
+				path: "title",
+				operator: FilterOperator.Contains,
+				value1: query,
+				caseSensitive: false
+			}));
+		}
+		const list = this.getView()?.byId("products") as HBox;
+		const binding = list.getBinding("items") as ODataListBinding;
+		binding.filter(filter);
+	}
+
+  public onCreateRating(event: RatingIndicator$ChangeEvent) {
+		const ratingIndicator = event.getSource();
+		const operation = ratingIndicator.getObjectBinding() as ODataContextBinding;
+		operation.invoke().then(() => {
+			//console.log("logging the result...", operation.getBoundContext().getObject());
+			MessageToast.show("Rating submitted.");
+      const label = this.getView()?.byId("ratingLabel") as Label;
+      const compositeBinding = label.getBinding("text") as CompositeBinding;
+      compositeBinding.getBindings()[0].refresh(true);
+      ratingIndicator.setEnabled(false);
+		}).catch(function(error: Error) {
+			MessageToast.show(error.message);
+		});
+	}
 }
